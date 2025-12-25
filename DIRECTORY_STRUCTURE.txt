@@ -1,0 +1,42 @@
+.
+├── lib
+│   ├── blocs
+│   │   ├── assessment_bloc.dart
+│   │   ├── assessment_event.dart
+│   │   ├── assessment_state.dart
+│   │   ├── profile_bloc.dart
+│   │   ├── profile_event.dart
+│   │   └── profile_state.dart
+│   ├── config
+│   │   ├── app_colors.dart
+│   │   └── app_constants.dart
+│   ├── models
+│   │   ├── health_assessment.dart
+│   │   └── user_profile.dart
+│   ├── screens
+│   │   ├── analyzing_screen.dart
+│   │   ├── check_screen.dart
+│   │   ├── explain_screen.dart
+│   │   ├── history_screen.dart
+│   │   ├── home_screen.dart
+│   │   ├── profile_screen.dart
+│   │   ├── result_screen.dart
+│   │   └── splash_screen.dart
+│   ├── utils
+│   │   ├── helpers.dart
+│   │   ├── risk_calculator.dart
+│   │   └── storage_service.dart
+│   ├── widgets
+│   └── main.dart
+├── analysis_options.yaml
+├── CHECKLIST.md
+├── DIRECTORY_STRUCTURE.txt
+├── PROJECT_SUMMARY.md
+├── pubspec.lock
+├── pubspec.yaml
+├── quickstart.bat
+├── quickstart.sh
+├── README.md
+└── SETUP.md
+
+8 directories, 32 files
