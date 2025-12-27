@@ -5,7 +5,9 @@ import '../blocs/assessment_event.dart';
 import '../blocs/assessment_state.dart';
 import '../config/app_colors.dart';
 import '../utils/helpers.dart';
+import 'about_heart_disease_screen.dart';
 import 'check_screen.dart';
+import 'heart_health_tips_screen.dart';
 import 'history_screen.dart';
 import 'profile_screen.dart';
 
@@ -78,7 +80,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         title: 'Heart Health Tips',
                         subtitle: 'Learn how to keep your heart healthy',
                         onTap: () {
-                          // Navigate to tips screen (to be implemented)
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const HeartHealthTipsScreen(),
+                            ),
+                          );
                         },
                       ),
                       const SizedBox(height: 16),
@@ -103,7 +110,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         title: 'About Heart Disease',
                         subtitle: 'Understanding cardiovascular health',
                         onTap: () {
-                          // Navigate to info screen (to be implemented)
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const AboutHeartDiseaseScreen(),
+                            ),
+                          );
                         },
                       ),
                     ],
