@@ -123,6 +123,8 @@ class AssessmentBloc extends Bloc<AssessmentEvent, AssessmentState> {
           ? assessments.reduce((a, b) => a.date.isAfter(b.date) ? a : b)
           : null;
 
+      assessments.sort((a, b) => b.date.compareTo(a.date));
+
       emit(
         AssessmentHistoryLoaded(
           assessments: assessments,
