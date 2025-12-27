@@ -251,7 +251,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                   ),
                   const SizedBox(width: 12),
                   Text(
-                    '${assessment.riskPercentage * 100}%',
+                    '${(assessment.riskPercentage * 100).toStringAsFixed(1)}%',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
