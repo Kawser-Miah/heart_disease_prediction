@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "955170453302",
+    "project_id": "heart-disease-prediction-59d0b",
+    "storage_bucket": "heart-disease-prediction-59d0b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955170453302:android:b82de84666ca4bfb642597",
+        "android_client_info": {
+          "package_name": "com.example.heart_disease_prediction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955170453302-eusp2q7jf87480gcth43fdl54itq0cj8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.heart_disease_prediction",
+            "certificate_hash": "760a1afbff4eafe2a81a0b931df2e4be81e1b495"
+          }
+        },
+        {
+          "client_id": "955170453302-5p9mfvs0honj8f0ps19jrobh93tdv940.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJT43UM1_NkPRtOd8SSHW_zmjxhQA2sx8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955170453302-5p9mfvs0honj8f0ps19jrobh93tdv940.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
