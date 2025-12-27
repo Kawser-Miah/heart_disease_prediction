@@ -104,7 +104,7 @@ class _ResultScreenState extends State<ResultScreen>
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              '${riskPercentage * 100}%',
+                              '${(riskPercentage * 100).toStringAsFixed(1)}%',
                               style: TextStyle(
                                 fontSize: 32,
                                 fontWeight: FontWeight.bold,
