@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserProfile extends Equatable {
   final String name;
@@ -84,3 +85,46 @@ class UserProfile extends Equatable {
     );
   }
 }
+
+class UserModel {
+  final String uid;
+  final String name;
+  final String email;
+  final DateTime? createdAt;
+
+  UserModel({
+    required this.uid,
+    required this.name,
+    required this.email,
+    this.createdAt,
+  });
+
+  /// Convert UserModel → Map for Firestore
+  Map<String, dynamic> toMap() {
+    return {
+      'uid': uid,
+      'name': name,
+      'email': email,
+      'createdAt': FieldValue.serverTimestamp(),
+    };
+  }
+
+  /// Create UserModel from Firestore Document
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      uid: map['uid'] ?? '',
+      name: map['name'] ?? '',
+      email: map['email'] ?? '',
+      createdAt: map['createdAt'] != null
+          ? (map['createdAt'] as Timestamp).toDate()
+          : null,
+    );
+  }
+
+  /// Create UserModel from Firestore DocumentSnapshot
+  factory UserModel.fromDocument(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return UserModel.fromMap(data);
+  }
+}
+
