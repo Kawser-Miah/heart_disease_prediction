@@ -1,8 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:heart_disease_prediction/screens/log_in_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'data/repository_iml/authentication_repository_iml.dart';
+import 'firebase_options.dart';
 
 import 'blocs/assessment_bloc.dart';
 import 'blocs/profile_bloc.dart';
@@ -18,6 +24,7 @@ import 'utils/storage_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // Set system UI overlay style
   SystemChrome.setSystemUIOverlayStyle(
@@ -33,10 +40,18 @@ void main() async {
   Future<HeartDiseaseDb> db = $FloorHeartDiseaseDb
       .databaseBuilder('heart_disease.db')
       .build();
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
   final riskCalculator = RiskCalculator();
   final heartDiseaseRepository = HeartDiseaseRepositoryIml();
   final factorContributionRepoIml = FactorContributionRepoIml(await db);
   final healthAssessmentRepoIml = HealthAssessmentRepoIml(await db);
+  final AuthenticationRepositoryIml authenticationRepositoryIml =
+      AuthenticationRepositoryIml(firebaseAuth, firestore);
+
+  // await authenticationRepositoryIml.signInWithGoogle();
 
   runApp(
     MyApp(
@@ -45,6 +60,7 @@ void main() async {
       heartDiseaseRepository: heartDiseaseRepository,
       healthAssessmentRepoIml: healthAssessmentRepoIml,
       factorContributionRepoIml: factorContributionRepoIml,
+      authenticationRepositoryIml: authenticationRepositoryIml,
     ),
   );
 }
@@ -55,6 +71,7 @@ class MyApp extends StatelessWidget {
   final HeartDiseaseRepositoryIml heartDiseaseRepository;
   final HealthAssessmentRepoIml healthAssessmentRepoIml;
   final FactorContributionRepoIml factorContributionRepoIml;
+  final AuthenticationRepositoryIml authenticationRepositoryIml;
 
   const MyApp({
     super.key,
@@ -63,6 +80,7 @@ class MyApp extends StatelessWidget {
     required this.heartDiseaseRepository,
     required this.healthAssessmentRepoIml,
     required this.factorContributionRepoIml,
+    required this.authenticationRepositoryIml,
   });
 
   @override
@@ -117,7 +135,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: const SplashScreen(),
+        home: SplashScreen(),
       ),
     );
   }
