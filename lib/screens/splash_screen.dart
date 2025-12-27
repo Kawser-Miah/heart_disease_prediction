@@ -3,6 +3,7 @@ import 'package:animate_do/animate_do.dart';
 import '../config/app_colors.dart';
 import '../config/app_constants.dart';
 import 'home_screen.dart';
+import 'log_in_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
