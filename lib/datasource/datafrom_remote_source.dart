@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart' hide FormData;
 
-import '../models/prediction_response.dart';
 import '../models/health_assessment.dart';
+import '../models/prediction_response.dart';
 
 class DataFromRemoteSource {
   final Dio _dio;
