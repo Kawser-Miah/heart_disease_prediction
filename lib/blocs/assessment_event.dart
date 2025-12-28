@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+
 import '../models/health_assessment.dart';
 
 abstract class AssessmentEvent extends Equatable {
