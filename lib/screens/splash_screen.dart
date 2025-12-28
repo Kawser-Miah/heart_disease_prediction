@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:heart_disease_prediction/screens/auth_gate.dart';
 import '../config/app_colors.dart';
 import '../config/app_constants.dart';
 import 'home_screen.dart';
@@ -28,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen>
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const HomeScreen()),
+          MaterialPageRoute(builder: (_) => const AuthGate()),
         );
       }
     });
@@ -45,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen>
     return GestureDetector(
       onTap: () {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const HomeScreen()),
+          MaterialPageRoute(builder: (_) => const AuthGate()),
         );
       },
       child: Scaffold(
