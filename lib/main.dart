@@ -1,23 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:heart_disease_prediction/screens/log_in_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'data/repository_iml/authentication_repository_iml.dart';
-import 'firebase_options.dart';
 
 import 'blocs/assessment_bloc.dart';
 import 'blocs/profile_bloc.dart';
 import 'config/app_colors.dart';
 import 'config/app_constants.dart';
+import 'data/repository_iml/authentication_repository_iml.dart';
 import 'data/repository_iml/factor_contribution_repo_iml.dart';
 import 'data/repository_iml/health_assessment_repo_iml.dart';
 import 'data/repository_iml/heart_disease_repository_iml.dart';
 import 'datasource/db/heart_disease_db.dart';
+import 'firebase_options.dart';
 import 'screens/splash_screen.dart';
 import 'utils/risk_calculator.dart';
 import 'utils/storage_service.dart';
@@ -50,8 +49,6 @@ void main() async {
   final healthAssessmentRepoIml = HealthAssessmentRepoIml(await db);
   final AuthenticationRepositoryIml authenticationRepositoryIml =
       AuthenticationRepositoryIml(firebaseAuth, firestore);
-
-  // await authenticationRepositoryIml.signInWithGoogle();
 
   runApp(
     MyApp(
@@ -98,7 +95,10 @@ class MyApp extends StatelessWidget {
           ),
         ),
         BlocProvider<ProfileBloc>(
-          create: (context) => ProfileBloc(storageService: storageService),
+          create: (context) => ProfileBloc(
+            storageService: storageService,
+            authenticationRepositoryIml: authenticationRepositoryIml,
+          ),
         ),
       ],
       child: MaterialApp(
