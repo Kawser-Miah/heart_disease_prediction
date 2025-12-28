@@ -5,7 +5,6 @@ import '../blocs/assessment_bloc.dart';
 import '../blocs/assessment_event.dart';
 import '../blocs/assessment_state.dart';
 import '../config/app_colors.dart';
-import '../data/repository/authentication_repository.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
