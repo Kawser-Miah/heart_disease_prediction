@@ -65,4 +65,18 @@ class AssessmentLoading extends AssessmentState {
   const AssessmentLoading();
 }
 
+class SuccessLoginState extends AssessmentState {
+  const SuccessLoginState();
+}
 
+class ErrorLoginState extends AssessmentState {
+  const ErrorLoginState();
+}
+
+class ErrorLogoutState extends AssessmentState {
+  const ErrorLogoutState();
+}
+
+class SuccessLogoutState extends AssessmentState {
+  const SuccessLogoutState();
+}
