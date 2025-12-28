@@ -42,3 +42,11 @@ class DeleteAssessment extends AssessmentEvent {
   @override
   List<Object?> get props => [assessmentId];
 }
+
+class LoginEvent extends AssessmentEvent {
+  const LoginEvent();
+}
+
+class LogoutEvent extends AssessmentEvent {
+  const LogoutEvent();
+}
