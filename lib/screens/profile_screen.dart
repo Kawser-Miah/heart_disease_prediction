@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heart_disease_prediction/blocs/assessment_event.dart';
+import '../blocs/assessment_bloc.dart';
 import '../blocs/profile_bloc.dart';
 import '../blocs/profile_event.dart';
 import '../blocs/profile_state.dart';
@@ -32,9 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         builder: (context, state) {
           if (state is ProfileLoading) {
             return const Center(
-              child: CircularProgressIndicator(
-                color: AppColors.teal600,
-              ),
+              child: CircularProgressIndicator(color: AppColors.teal600),
             );
           }
 
@@ -53,8 +53,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(32),
-                        bottomRight: Radius.circular(32)
-                      )
+                        bottomRight: Radius.circular(32),
+                      ),
                     ),
                     padding: const EdgeInsets.fromLTRB(24, 40, 24, 40),
                     child: Column(
@@ -162,8 +162,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         _buildInfoCard(
                           icon: Icons.phone,
                           label: 'Phone',
-                          value:
-                              profile.phone.isEmpty ? 'Not set' : profile.phone,
+                          value: profile.phone.isEmpty
+                              ? 'Not set'
+                              : profile.phone,
                         ),
                         const SizedBox(height: 12),
                         _buildInfoCard(
@@ -249,9 +250,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             );
           }
 
-          return const Center(
-            child: Text('Unable to load profile'),
-          );
+          return const Center(child: Text('Unable to load profile'));
         },
       ),
     );
@@ -277,11 +276,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               color: AppColors.teal50,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Icon(
-              icon,
-              color: AppColors.teal600,
-              size: 24,
-            ),
+            child: Icon(icon, color: AppColors.teal600, size: 24),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -307,11 +302,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
-          const Icon(
-            Icons.edit_outlined,
-            color: AppColors.gray400,
-            size: 20,
-          ),
+          const Icon(Icons.edit_outlined, color: AppColors.gray400, size: 20),
         ],
       ),
     );
@@ -338,11 +329,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             color: AppColors.teal50,
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Icon(
-            icon,
-            color: AppColors.teal600,
-            size: 20,
-          ),
+          child: Icon(icon, color: AppColors.teal600, size: 20),
         ),
         title: Text(
           title,
@@ -353,15 +340,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         subtitle: Text(
           subtitle,
-          style: const TextStyle(
-            fontSize: 12,
-            color: AppColors.gray600,
-          ),
+          style: const TextStyle(fontSize: 12, color: AppColors.gray600),
         ),
-        trailing: const Icon(
-          Icons.chevron_right,
-          color: AppColors.gray400,
-        ),
+        trailing: const Icon(Icons.chevron_right, color: AppColors.gray400),
         onTap: onTap,
       ),
     );
@@ -397,18 +378,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             SizedBox(height: 8),
             Text(
               'Early detection. Better heart health.',
-              style: TextStyle(
-                fontSize: 12,
-                color: AppColors.gray600,
-              ),
+              style: TextStyle(fontSize: 12, color: AppColors.gray600),
             ),
             SizedBox(height: 16),
             Text(
               '© 2025 CardioCare AI. All rights reserved.',
-              style: TextStyle(
-                fontSize: 12,
-                color: AppColors.gray600,
-              ),
+              style: TextStyle(fontSize: 12, color: AppColors.gray600),
             ),
           ],
         ),
@@ -436,6 +411,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
+              Navigator.pop(context);
+              context.read<AssessmentBloc>().add(LogoutEvent());
+
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Text('Logged out successfully'),
