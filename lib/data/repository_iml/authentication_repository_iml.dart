@@ -13,9 +13,27 @@ class AuthenticationRepositoryIml extends AuthenticationRepository {
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
 
   @override
-  Future<UserProfile> getUserProfile() {
-    // TODO: implement getUserProfile
-    throw UnimplementedError();
+  Future<UserModel> getUserProfile() async {
+    try {
+      final user = _firebaseAuth.currentUser;
+
+      if (user == null) {
+        throw Exception('User not logged in');
+      }
+
+      final doc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
+
+      if (!doc.exists) {
+        throw Exception('User profile not found');
+      }
+
+      return UserModel.fromDocument(doc);
+    } catch (e) {
+      throw Exception(e.toString());
+    }
   }
 
   @override
@@ -48,8 +66,16 @@ class AuthenticationRepositoryIml extends AuthenticationRepository {
         final uid = user.uid;
         final email = user.email;
         final name = user.displayName;
+        final photoUrl = user.photoURL;
+        final phoneNumber = user.phoneNumber;
 
-        final userModel = UserModel(uid: uid, name: name!, email: email!);
+        final userModel = UserModel(
+          uid: uid,
+          name: name!,
+          email: email!,
+          photoUrl: photoUrl ?? '',
+          phoneNumber: phoneNumber ?? '',
+        );
         await _firestore
             .collection('users')
             .doc(uid)
