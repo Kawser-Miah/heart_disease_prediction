@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+
 import '../config/app_colors.dart';
 
 class HeartHealthTipsScreen extends StatelessWidget {
