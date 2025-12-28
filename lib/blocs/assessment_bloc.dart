@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heart_disease_prediction/data/repository_iml/authentication_repository_iml.dart';
 import 'package:heart_disease_prediction/data/repository_iml/factor_contribution_repo_iml.dart';
 import 'package:heart_disease_prediction/data/repository_iml/health_assessment_repo_iml.dart';
 import 'package:uuid/uuid.dart';
@@ -16,6 +17,7 @@ class AssessmentBloc extends Bloc<AssessmentEvent, AssessmentState> {
   final HeartDiseaseRepositoryIml heartDiseaseRepository;
   final HealthAssessmentRepoIml healthAssessmentRepoIml;
   final FactorContributionRepoIml factorContributionRepoIml;
+  final AuthenticationRepositoryIml authenticationRepositoryIml;
 
   AssessmentBloc({
     required this.storageService,
@@ -23,12 +25,15 @@ class AssessmentBloc extends Bloc<AssessmentEvent, AssessmentState> {
     required this.heartDiseaseRepository,
     required this.healthAssessmentRepoIml,
     required this.factorContributionRepoIml,
+    required this.authenticationRepositoryIml,
   }) : super(const AssessmentInitial()) {
     on<UpdateFormField>(_onUpdateFormField);
     on<SubmitAssessment>(_onSubmitAssessment);
     on<LoadAssessmentHistory>(_onLoadAssessmentHistory);
     on<ClearCurrentAssessment>(_onClearCurrentAssessment);
     on<DeleteAssessment>(_onDeleteAssessment);
+    on<LoginEvent>(_onLoginEvent);
+    on<LogoutEvent>(_onLogoutEvent);
   }
 
   void _onUpdateFormField(
@@ -154,6 +159,34 @@ class AssessmentBloc extends Bloc<AssessmentEvent, AssessmentState> {
       add(const LoadAssessmentHistory());
     } catch (e) {
       emit(AssessmentError('Failed to delete assessment: ${e.toString()}'));
+    }
+  }
+
+  Future<void> _onLoginEvent(
+    LoginEvent event,
+    Emitter<AssessmentState> emit,
+  ) async {
+    emit(const AssessmentLoading());
+    try {
+      await authenticationRepositoryIml.signInWithGoogle();
+
+      emit(const SuccessLoginState());
+    } catch (e) {
+      emit(const ErrorLoginState());
+    }
+  }
+
+  Future<void> _onLogoutEvent(
+    LogoutEvent event,
+    Emitter<AssessmentState> emit,
+  ) async {
+    emit(const AssessmentLoading());
+    try {
+      await authenticationRepositoryIml.signOut();
+
+      emit(const SuccessLogoutState());
+    } catch (e) {
+      emit(const ErrorLogoutState());
     }
   }
 }
