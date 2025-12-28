@@ -1,5 +1,5 @@
-import 'package:equatable/equatable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equatable/equatable.dart';
 
 class UserProfile extends Equatable {
   final String name;
@@ -52,14 +52,14 @@ class UserProfile extends Equatable {
 
   @override
   List<Object?> get props => [
-        name,
-        email,
-        phone,
-        emergencyContact,
-        bloodType,
-        dateOfBirth,
-        avatarUrl,
-      ];
+    name,
+    email,
+    phone,
+    emergencyContact,
+    bloodType,
+    dateOfBirth,
+    avatarUrl,
+  ];
 
   Map<String, dynamic> toJson() {
     return {
@@ -87,16 +87,20 @@ class UserProfile extends Equatable {
 }
 
 class UserModel {
-  final String uid;
-  final String name;
-  final String email;
+  final String? uid;
+  final String? name;
+  final String? email;
   final DateTime? createdAt;
+  final String? photoUrl;
+  final String? phoneNumber;
 
   UserModel({
     required this.uid,
     required this.name,
     required this.email,
     this.createdAt,
+    required this.photoUrl,
+    required this.phoneNumber,
   });
 
   /// Convert UserModel → Map for Firestore
@@ -106,6 +110,8 @@ class UserModel {
       'name': name,
       'email': email,
       'createdAt': FieldValue.serverTimestamp(),
+      'photoUrl': photoUrl,
+      'phoneNumber': phoneNumber,
     };
   }
 
@@ -118,13 +124,19 @@ class UserModel {
       createdAt: map['createdAt'] != null
           ? (map['createdAt'] as Timestamp).toDate()
           : null,
+      photoUrl: map['photoUrl'] ?? '',
+      phoneNumber: map['phoneNumber'] ?? '',
     );
   }
 
-  /// Create UserModel from Firestore DocumentSnapshot
+  /// Create UserModel from Firestore DocuFirebaseAuth.instancementSnapshot
   factory UserModel.fromDocument(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return UserModel.fromMap(data);
   }
-}
 
+  @override
+  String toString() {
+    return "$uid, $name, $email, $createdAt, $photoUrl, $phoneNumber";
+  }
+}
