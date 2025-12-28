@@ -94,6 +94,7 @@ class MyApp extends StatelessWidget {
             heartDiseaseRepository: heartDiseaseRepository,
             healthAssessmentRepoIml: healthAssessmentRepoIml,
             factorContributionRepoIml: factorContributionRepoIml,
+            authenticationRepositoryIml: authenticationRepositoryIml,
           ),
         ),
         BlocProvider<ProfileBloc>(
