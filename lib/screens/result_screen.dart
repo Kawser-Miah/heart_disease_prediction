@@ -208,31 +208,31 @@ class _ResultScreenState extends State<ResultScreen>
                     },
                   ),
                   const SizedBox(height: 12),
-                  _buildActionButton(
-                    icon: Icons.download,
-                    label: 'Download Report',
-                    color: AppColors.gray700,
-                    onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Report download feature coming soon'),
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 12),
-                  _buildActionButton(
-                    icon: Icons.share,
-                    label: 'Share with Doctor',
-                    color: Colors.blue,
-                    onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Share feature coming soon'),
-                        ),
-                      );
-                    },
-                  ),
+                  // _buildActionButton(
+                  //   icon: Icons.download,
+                  //   label: 'Download Report',
+                  //   color: AppColors.gray700,
+                  //   onTap: () {
+                  //     ScaffoldMessenger.of(context).showSnackBar(
+                  //       const SnackBar(
+                  //         content: Text('Report download feature coming soon'),
+                  //       ),
+                  //     );
+                  //   },
+                  // ),
+                  // const SizedBox(height: 12),
+                  // _buildActionButton(
+                  //   icon: Icons.share,
+                  //   label: 'Share with Doctor',
+                  //   color: Colors.blue,
+                  //   onTap: () {
+                  //     ScaffoldMessenger.of(context).showSnackBar(
+                  //       const SnackBar(
+                  //         content: Text('Share feature coming soon'),
+                  //       ),
+                  //     );
+                  //   },
+                  // ),
                   const SizedBox(height: 24),
 
                   // Disclaimer
