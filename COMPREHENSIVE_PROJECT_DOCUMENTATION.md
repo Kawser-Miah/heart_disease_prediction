@@ -92,7 +92,7 @@ CardioCare AI is a comprehensive mobile health application that leverages machin
 │  └───────────────────────────────────────────────────────┘  │
 │  ┌───────────────────────────────────────────────────────┐  │
 │  │  ML Model Layer                                       │  │
-│  │  • KNN Classifier (scikit-learn)                      │  │
+│  │  • RF(Random Forest) (scikit-learn)                      │  │
 │  │  • StandardScaler                                     │  │
 │  └───────────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────┘
@@ -101,7 +101,7 @@ CardioCare AI is a comprehensive mobile health application that leverages machin
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
 │              MACHINE LEARNING ARTIFACTS                     │
-│  • heart-disease-prediction-knn-model.pkl                   │
+│  • heart-disease-prediction-model.pkl                   │
 │  • scaler.pkl                                               │
 └─────────────────────────────────────────────────────────────┘
 
@@ -161,7 +161,7 @@ CardioCare AI is a comprehensive mobile health application that leverages machin
 
 ### Machine Learning
 
-- **Algorithm**: K-Nearest Neighbors (KNN) Classifier
+- **Algorithm**: Random Forest (RF) Classifier
 - **Preprocessing**: StandardScaler for feature normalization
 - **Framework**: scikit-learn
 - **Model Format**: Pickle (.pkl)
@@ -200,7 +200,7 @@ heart_disease_api/
 │   └── utils/
 │       └── preprocessing.py      # Feature preprocessing
 ├── artifacts/
-│   ├── heart-disease-prediction-knn-model.pkl
+│   ├── heart-disease-prediction-model.pkl
 │   └── scaler.pkl
 ├── requirements.txt
 ├── run.py                         # Application runner
@@ -308,7 +308,7 @@ Content-Type: application/json
 class Settings(BaseSettings):
     app_name: str = "Heart Disease Prediction API"
     version: str = "1.0.0"
-    model_path: Path = "artifacts/heart-disease-prediction-knn-model.pkl"
+    model_path: Path = "artifacts/heart-disease-prediction-model.pkl"
     scaler_path: Path = "artifacts/scaler.pkl"
     prediction_threshold: float = 0.5
     api_prefix: str = "/api"
@@ -318,7 +318,7 @@ class Settings(BaseSettings):
 ```
 
 #### 2. Model Loader (ml_model.py)
-- Loads pre-trained KNN model at startup
+- Loads pre-trained RF model at startup
 - Loads StandardScaler for feature normalization
 - Module-level caching for performance
 - Automatic validation of artifact files
@@ -326,7 +326,7 @@ class Settings(BaseSettings):
 #### 3. Predictor (predictor.py)
 **Prediction Workflow:**
 1. Preprocess input data (feature ordering + scaling)
-2. Apply ML model (KNN classifier)
+2. Apply ML model (RF classifier)
 3. Calculate probability (predict_proba)
 4. Determine binary prediction
 5. Assign risk level based on thresholds
@@ -828,7 +828,7 @@ pip install -r requirements.txt
 # Verify model files exist
 ls -la artifacts/
 # Should show:
-# - heart-disease-prediction-knn-model.pkl
+# - heart-disease-prediction-model.pkl
 # - scaler.pkl
 ```
 
@@ -904,7 +904,7 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ============================================================
 🚀 Heart Disease Prediction API v1.0.0
 ============================================================
-📊 Model loaded from: artifacts/heart-disease-prediction-knn-model.pkl
+📊 Model loaded from: artifacts/heart-disease-prediction-model.pkl
 📐 Scaler loaded from: artifacts/scaler.pkl
 📝 Documentation: http://localhost:8000/docs
 ============================================================
@@ -1014,7 +1014,7 @@ heart_disease_prediction/
 │   │   ├── schemas/                  # Data schemas
 │   │   └── utils/                    # Utilities
 │   ├── artifacts/                    # ML model files
-│   │   ├── heart-disease-prediction-knn-model.pkl
+│   │   ├── heart-disease-prediction-model.pkl
 │   │   └── scaler.pkl
 │   ├── requirements.txt
 │   ├── run.py
@@ -1418,7 +1418,7 @@ FIREBASE_API_KEY=your_key_here
 # Verify model files exist
 ls -la heart_disease_api/artifacts/
 # Should show:
-# - heart-disease-prediction-knn-model.pkl
+# - heart-disease-prediction-model.pkl
 # - scaler.pkl
 
 # If missing, train model or obtain files
