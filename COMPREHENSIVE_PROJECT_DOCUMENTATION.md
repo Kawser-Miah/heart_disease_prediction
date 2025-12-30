@@ -5,7 +5,7 @@
 
 **Version:** 1.0.0  
 **Last Updated:** December 30, 2025  
-**Project Location:** `/home/kawser-ahmed/flutter_project/heart_disease_prediction`
+**Project Location:** `https://github.com/Kawser-Miah/heart_disease_prediction`
 
 ---
 
@@ -809,7 +809,7 @@ try {
 ### Step 1: Clone/Navigate to Project
 
 ```bash
-cd /home/kawser-ahmed/flutter_project/heart_disease_prediction
+cd https://github.com/Kawser-Miah/heart_disease_prediction
 ```
 
 ### Step 2: Backend Setup
@@ -836,7 +836,7 @@ ls -la artifacts/
 
 ```bash
 # Navigate to project root
-cd /home/kawser-ahmed/flutter_project/heart_disease_prediction
+cd https://github.com/Kawser-Miah/heart_disease_prediction
 
 # Get dependencies
 flutter pub get
@@ -1570,7 +1570,7 @@ flutter run --observatory-port=8888
 
 ### Project Repository
 ```
-Location: /home/kawser-ahmed/flutter_project/heart_disease_prediction
+Location: https://github.com/Kawser-Miah/heart_disease_prediction
 ```
 
 ---
