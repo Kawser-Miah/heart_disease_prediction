@@ -2,6 +2,9 @@
 
 A comprehensive heart disease detection mobile application built with Flutter and BLoC state management. This app provides AI-powered risk assessment, health tracking, and personalized recommendations for cardiovascular health.
 
+## Complete frontend and backend source code.
+
+📄 Full documentation: [COMPREHENSIVE_PROJECT_DOCUMENTATION.md](COMPREHENSIVE_PROJECT_DOCUMENTATION.md)
 ## 🎯 Features
 
 - **Heart Health Assessment**: Comprehensive health check questionnaire with medical parameters
